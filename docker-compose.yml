@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  dotnet:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    container_name: soccer-simulator-dev
+    working_dir: /app
+    volumes:
+      - .:/app                    # Project files (includes results/ folder)
+      - dotnet-nuget:/root/.nuget # Cache NuGet packages
+    command: tail -f /dev/null    # Keep container running
+    stdin_open: true
+    tty: true
+
+volumes:
+  dotnet-nuget:
